@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# big or generated files stay out of Git
+data/
+outputs/
