@@ -8,7 +8,7 @@ from sladro.data2011 import FEATURES, build_machine_dataset  # noqa: E402
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--raw", default="data/raw/task_usage")
-ap.add_argument("--out", default="data/processed/machine_dataset.parquet")
+ap.add_argument("--out", default="data/processed/machine_dataset.pkl")
 ap.add_argument("--max-files", type=int, default=None)
 ap.add_argument("--chunksize", type=int, default=1_000_000, help="lower this if you run out of memory")
 a = ap.parse_args()
@@ -16,7 +16,7 @@ a = ap.parse_args()
 print("Reading and aggregating...")
 df = build_machine_dataset(a.raw, a.max_files, a.chunksize)
 Path(a.out).parent.mkdir(parents=True, exist_ok=True)
-df.to_parquet(a.out, index=False)
+df.to_pickle(a.out)
 
 n_win = df["bucket"].nunique()
 print(f"\nSaved {a.out}")

@@ -11,7 +11,7 @@ from sladro.data2011 import FEATURE_LABELS  # noqa: E402
 from sladro.layer1 import run_layer1  # noqa: E402
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--data", default="data/processed/machine_dataset.parquet")
+ap.add_argument("--data", default="data/processed/machine_dataset.pkl")
 ap.add_argument("--out", default="outputs/layer1_result.json")
 ap.add_argument("--iters", type=int, default=30)
 ap.add_argument("--beta", type=float, default=0.05, help="penalty per fraction of features used")
@@ -19,7 +19,7 @@ ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--plot", action="store_true", help="also save a convergence chart")
 a = ap.parse_args()
 
-df = pd.read_parquet(a.data)
+df = pd.read_pickle(a.data)
 print(f"Loaded {len(df):,} rows. Running OOA-PSO...")
 r = run_layer1(df, n_iter=a.iters, beta=a.beta, seed=a.seed)
 
