@@ -1,4 +1,4 @@
-"""Aggregate downloaded task_usage part files into one machine-level dataset (Parquet)."""
+"""Aggregate downloaded task_usage part files into one machine-level dataset."""
 import argparse
 import sys
 from pathlib import Path
